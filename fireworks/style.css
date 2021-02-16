@@ -1,0 +1,96 @@
+body {
+    /* width: 100%; */
+    background-color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+
+canvas {
+    padding: 0;
+    margin: 0;
+    /* width: 99.5%; */
+    width: 1200px;
+    max-height: 600px;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    cursor: pointer;
+}
+
+canvas:hover {
+    cursor: crosshair;
+}
+
+form {
+    background-color: #000000;
+    padding: 0.5 em;
+    padding-left: 15%;
+}
+
+form fieldset, #dbArea fieldset {
+    margin: 0.5em;
+    padding: 0.7em;
+    border: 1px solid #000000;
+    border-top: 1px solid #ffffff;
+    display: inline;
+}
+
+#dbArea {
+    background-color: #000000;
+}
+
+legend {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+fieldset>label {
+    color: #ffffff;
+}
+
+input {
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#pColor {
+    width: 150px;
+    height: 25px;
+    padding: 0px;
+    background-color: #000000;
+    border: none;
+    margin-top: -10px;
+}
+
+#dbArea {
+    padding-left: 25%;
+}
+
+#dbArea button {
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    font-weight: 600;
+    height: 25px;
+    width: 130px;
+}
+
+#rName {
+    border: 1px solid #ffffff;
+    height: 21px;
+    border-radius: 0;
+}
+
+#dbSelect {
+    height: 25px;
+    width: 100px;
+    border-radius: 0;
+    border: 1px solid #ffffff;
+}
+
+#dbArea button:hover {
+    background-color: #000000;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    font-weight: 600;
+    height: 25px;
+    width: 130px;
+}

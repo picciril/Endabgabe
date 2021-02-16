@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+    <script src="scripts/movingObjects.js"></script>
+    <script src="scripts/particles.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- <script src="scripts/database.js"></script> -->
+    <script src="scripts/vector.js"></script>
+
+    <title>Feuerwerk</title>
+</head>
+
+<body>
+    <div id="startPage">
+        <button id="startButt">Start Game</button>
+    </div>
+
+    <div id="gamePage">
+
+        <canvas></canvas>
+
+        <form id="userInterface" method="GET">
+
+            <fieldset>
+                <legend>anzahl der partikel </legend>
+                <input type="radio" name="pNumber" id="100" value="100" checked />
+                <label for="100">wenig</label>
+                <input type="radio" name="pNumber" id="200" value="200" />
+                <label for="200">normal</label>
+                <input type="radio" name="pNumber" id="300" value="300" />
+                <label for="300">viele</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>explosionsradius</legend>
+                <input type="radio" name="pSize" id="small" value="3" checked />
+                <label for="small">klein</label>
+                <input type="radio" name="pSize" id="medium" value="4" />
+                <label for="medium">medium</label>
+                <input type="radio" name="pSize" id="big" value="5" />
+                <label for="big">groß</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>form</legend>
+                <input type="radio" name="pShape" id="kreisRadio" value="kreise" checked />
+                <label for="kreisRadio">kreise</label>
+                <input type="radio" name="pShape" id="triangleRadio" value="dreiecke" />
+                <label for="triangleRadio">dreiecke</label>
+                <input type="radio" name="pShape" id="sternRadio" value="sterne" />
+                <label for="sternRadio">sterne</label>
+                <input type="radio" name="pShape" id="herzenRadio" value="herzen" />
+                <label for="herzenRadio">herzen</label>
+            </fieldset>
+
+            <fieldset>
+                <legend>farbe</legend>
+                <input type="color" name="pColor" id="pColor" value="#ffffff">
+            </fieldset>
+
+        </form>
+
+        <div id="dbArea">
+
+            <fieldset id="saveArea">
+                <legend>benenne deine lieblingsrakete</legend>
+                <input id="rName" type="text" name="rocketName" placeholder="name" required />
+                <button type="button" id="saveButt" form="userInterface">rakete speichern</button>
+            </fieldset>
+
+            <fieldset id="loadArea">
+                <legend>wähle eine gespeicherte rakete</legend>
+                <select name="dbEntries" id="dbSelect">
+                    <!-- Hier kommen die DB Sachen rein -->
+                </select>
+                <button type="button" id="dbButt">rakete laden</button>
+            </fieldset>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
