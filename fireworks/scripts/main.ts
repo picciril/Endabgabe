@@ -2,6 +2,8 @@ namespace NewYear {
   window.addEventListener("load", handleLoad);
   //let serverPage: string = "http://localhost:5001/";
   //https://endabgabe-fireworks.herokuapp.com/
+  let timeleft: number = 10;
+  let startTimer: number;
   let formular: HTMLFormElement;
   let pNumber: number;
   let pColor: string;
@@ -12,6 +14,7 @@ namespace NewYear {
   let startButt: HTMLButtonElement;
   let gamePage: HTMLDivElement;
 
+
   export let ctx: CanvasRenderingContext2D;
 
 
@@ -20,30 +23,42 @@ namespace NewYear {
 
     //richtige abschnitte sichtbar machen
     startPage = <HTMLDivElement>document.getElementById("startPage");
-    startPage.style.display = "block";
-
+    startButt = <HTMLButtonElement>document.getElementById("startButt");
     gamePage = <HTMLDivElement>document.getElementById("gamePage");
+
+    startPage.style.display = "grid";
+    startButt.style.display = "none";
     gamePage.style.display = "none";
 
-    startButt = <HTMLButtonElement>document.getElementById("startButt");
-    startButt.addEventListener("click", startFirework);
+    startTimer = window.setInterval(handleCountdown, 1000);
+  }
+
+  function handleCountdown(): void {
+    let countdown: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("countdown");
+
+    if (timeleft <= 0) {
+      clearInterval(startTimer);
+      countdown.innerText = "Frohes Neues!";
+      startButt.style.display = "initial";
+      startButt.addEventListener("click", startFirework);
+    } else {
+      countdown.innerText = "Noch " + timeleft + " Sekunden";
+      timeleft -= 1;
+    }
 
   }
+
 
   function startFirework(_event: Event): void {
 
     //richtige abschnitte sichtbar machen
-    startPage = <HTMLDivElement>document.getElementById("startPage");
     startPage.style.display = "none";
-
-    gamePage = <HTMLDivElement>document.getElementById("gamePage");
-    gamePage.style.display = "block";
+    gamePage.style.display = "grid";
 
     let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
     if (!canvas)
       return;
     ctx = <CanvasRenderingContext2D>canvas.getContext("2d");
-    formular = <HTMLFormElement>document.querySelector("form#userInterface");
 
     //let saveButt: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#saveButt");
     //saveButt.addEventListener("click", sendDataToServer);
@@ -56,11 +71,11 @@ namespace NewYear {
 
   function update(): void {
 
-    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillStyle = "rgba(0,0,0,0.3)";
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
     for (let movingObject of movingObjects) {
-      movingObject.move(1 / 50);
+      movingObject.move(1 / 35);
       movingObject.draw();
     }
 
@@ -74,8 +89,9 @@ namespace NewYear {
   function handleClick(_event: MouseEvent): void {
     console.log("handle click");
 
-    let mouseX: number = _event.clientX;
-    let mouseY: number = _event.clientY;
+    let mouseX: number = _event.offsetX;
+    let mouseY: number = _event.offsetY;
+    formular = <HTMLFormElement>document.querySelector("form#userInterface");
     let formularData: FormData = new FormData(formular);
 
     pNumber = Number(formularData.get("pNumber"));
@@ -96,14 +112,18 @@ namespace NewYear {
   function createParticle(_mouseX: number, _mouseY: number, _number: number, _color: string, _size: number, _shape: string): void {
 
     let origin: Vector = new Vector(_mouseX, _mouseY);
-    let color: string = _color;
+
+    let expandMin: number = 99;
+    let expandMax: number = 200;
+    let expandX: number = Math.floor(Math.random() * (expandMax - expandMin)) + expandMin;
+    let expandY: number = Math.floor(Math.random() * (expandMax - expandMin)) + expandMin;
 
     for (let i: number = 0; i < _number; i++) {
       let radian: number = (Math.PI * 2) / _number;
-      let px: number = Math.cos(radian * i) * 110 * Math.random() * 2;
-      let py: number = Math.sin(radian * i) * 110 * Math.random() * 2;
+      let px: number = Math.cos(radian * i) * expandX * Math.random() * 2;
+      let py: number = Math.sin(radian * i) * expandY * Math.random() * 2;
       let velocity: Vector = new Vector(px, py);
-      let particle: MovingObject = new Particles(origin, velocity, color, pSize, pShape);
+      let particle: MovingObject = new Particles(origin, velocity, _color, pSize, pShape);
       movingObjects.push(particle);
 
     }

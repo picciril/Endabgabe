@@ -11,27 +11,38 @@
     <!-- <script src="scripts/database.js"></script> -->
     <script src="scripts/vector.js"></script>
 
-    <title>Feuerwerk</title>
+    <title>Fireworks</title>
 </head>
 
 <body>
+
+    <H1>Fire works?</H1>
+
     <div id="startPage">
+
+        <p id="introText">Es ist schon wieder so weit. Das neue Jahr 2021 hat zwar gerade erst begonnen.
+            Die Neujahrshoffnungen allerdings haben sich schnell wieder in Luft aufgelöst.
+            Doch ein Ereignis hat die Chance alles zu verändern, um wenigstens das mittlerweile zweite (!)
+            Onlinesemester positiv Enden zu lassen. <br>
+            Wähle verschiedene Eigenschaften und eine eigene Farbe aus, um so dein ganz persönliches Freudenfeuer zu entzünden.<br>
+            Jeder hat auch einen Wunsch frei 😉</p>
+        <p id="countdown"></p>
         <button id="startButt">Start Game</button>
     </div>
 
     <div id="gamePage">
 
-        <canvas></canvas>
+        <canvas width=1300px; height=500px></canvas>
 
         <form id="userInterface" method="GET">
 
             <fieldset>
                 <legend>anzahl der partikel </legend>
-                <input type="radio" name="pNumber" id="100" value="100" checked />
+                <input type="radio" name="pNumber" id="100" value="200" checked />
                 <label for="100">wenig</label>
-                <input type="radio" name="pNumber" id="200" value="200" />
+                <input type="radio" name="pNumber" id="200" value="350" />
                 <label for="200">normal</label>
-                <input type="radio" name="pNumber" id="300" value="300" />
+                <input type="radio" name="pNumber" id="300" value="500" />
                 <label for="300">viele</label>
             </fieldset>
 
@@ -55,7 +66,7 @@
                 <label for="sternRadio">sterne</label>
                 <input type="radio" name="pShape" id="herzenRadio" value="herzen" />
                 <label for="herzenRadio">herzen</label>
-            </fieldset>
+          </fieldset>
 
             <fieldset>
                 <legend>farbe</legend>

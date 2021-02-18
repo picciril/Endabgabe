@@ -4,30 +4,30 @@ namespace NewYear {
 
         public position: Vector;
         public velocity: Vector;
-        static gravity: number = 1;
-         type: string;
-         lifetime: number;
-         color: string;
+        static gravity: number = 2;
+        shape: string;
+        size: number;
+        color: string;
 
 
-        constructor(_position: Vector, _velocity: Vector, _color: string, _lifetime: number, _type: string) {
+        constructor(_position: Vector, _velocity: Vector, _color: string, _pSize: number, _pShape: string) {
             super(_position);
             this.color = _color;
             this.velocity = _velocity.copy();
-            this.lifetime = _lifetime;
-            this.type = _type;
+            this.size = _pSize;
+            this.shape = _pShape;
         }
 
         public move(_timeslice: number): void {
             super.move(_timeslice);
             this.velocity.y += Particles.gravity;
-            this.lifetime -= _timeslice;
-            if (this.lifetime < 0)
+            this.size -= _timeslice;
+            if (this.size < 0)
                 this.expendable = true;
         }
 
         public draw(): void {
-            switch (this.type) {
+            switch (this.shape) {
                 case "kreise":
                     ctx.save();
                     ctx.beginPath();
@@ -42,7 +42,7 @@ namespace NewYear {
                     ctx.save();
                     ctx.beginPath();
                     ctx.translate(this.position.x, this.position.y);
-                    ctx.scale(0.09, 0.09);
+                    ctx.scale(0.2, 0.2);
                     ctx.moveTo(75, 30);
                     ctx.lineTo(90, 60);
                     ctx.lineTo(125, 75);
@@ -63,7 +63,7 @@ namespace NewYear {
                     ctx.save();
                     ctx.beginPath();
                     ctx.translate(this.position.x, this.position.y);
-                    ctx.scale(0.5, 0.5);
+                    ctx.scale(0.3, 0.3);
                     ctx.moveTo(75, 50);
                     ctx.lineTo(100, 75);
                     ctx.lineTo(100, 25);
@@ -76,7 +76,7 @@ namespace NewYear {
                     ctx.save();
                     ctx.beginPath();
                     ctx.translate(this.position.x, this.position.y);
-                    ctx.scale(0.1, 0.1);
+                    ctx.scale(0.2, 0.2);
                     ctx.moveTo(75, 40);
                     ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
                     ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
@@ -89,6 +89,7 @@ namespace NewYear {
                     ctx.fill();
                     ctx.restore();
                     break;
+
             }
         }
     }

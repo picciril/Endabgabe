@@ -1,16 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 body {
-    /* width: 100%; */
+    padding:0;
+    margin: 0;
+    width: 100%;
     background-color: #000000;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Orbitron', Helvetica, sans-serif;
     font-size: 17px;
 }
 
+#startPage {
+    grid-template-rows: auto 200px 1fr auto;
+    grid-template-columns: 25% 50% 25%;
+    color: #ffffff;
+}
+
+#introText {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;  
+    text-align: center;
+}
+
+#countdown {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;  
+    text-align: center;
+}
+
+#startPage p {
+    letter-spacing: 1px;
+}
+
+
+#gamePage {
+    grid-template-rows: auto 510px 1fr 1fr 1fr;
+    grid-template-columns: 5% 20% 25% 25% 20% 5%;
+}
+
+H1 {
+    color: white;
+    text-align: center;
+}
+
 canvas {
-    padding: 0;
-    margin: 0;
-    /* width: 99.5%; */
-    width: 1200px;
-    max-height: 600px;
+    grid-column: 2 / 5;
+    grid-row: 2 / 3;
     background-color: #000000;
     border: 1px solid #ffffff;
     cursor: pointer;
@@ -22,8 +55,9 @@ canvas:hover {
 
 form {
     background-color: #000000;
-    padding: 0.5 em;
-    padding-left: 15%;
+    grid-column: 1 / 7;
+    grid-row: 3 / 4;
+    padding-top: 0.25em;
 }
 
 form fieldset, #dbArea fieldset {
@@ -62,15 +96,24 @@ input {
 }
 
 #dbArea {
-    padding-left: 25%;
+    grid-column: 3 / 5;
+    grid-row: 4 / 5;
 }
 
-#dbArea button {
+#dbArea button, #startButt {
     background-color: #ffffff;
     border: 1px solid #ffffff;
     font-weight: 600;
+    font-family: 'Orbitron', Helvetica, sans-serif;
     height: 25px;
     width: 130px;
+}
+
+#startButt {
+    grid-row: 4 / 5;
+    grid-column: 2 / 3;
+    margin: 0 40%;
+    width: 20%;
 }
 
 #rName {
@@ -86,7 +129,7 @@ input {
     border: 1px solid #ffffff;
 }
 
-#dbArea button:hover {
+#dbArea button:hover, #startButt:hover {
     background-color: #000000;
     border: 1px solid #ffffff;
     color: #ffffff;

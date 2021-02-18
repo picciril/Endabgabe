@@ -2,22 +2,22 @@
 var NewYear;
 (function (NewYear) {
     class Particles extends NewYear.MovingObject {
-        constructor(_position, _velocity, _color, _lifetime, _type) {
+        constructor(_position, _velocity, _color, _pSize, _pShape) {
             super(_position);
             this.color = _color;
             this.velocity = _velocity.copy();
-            this.lifetime = _lifetime;
-            this.type = _type;
+            this.size = _pSize;
+            this.shape = _pShape;
         }
         move(_timeslice) {
             super.move(_timeslice);
             this.velocity.y += Particles.gravity;
-            this.lifetime -= _timeslice;
-            if (this.lifetime < 0)
+            this.size -= _timeslice;
+            if (this.size < 0)
                 this.expendable = true;
         }
         draw() {
-            switch (this.type) {
+            switch (this.shape) {
                 case "kreise":
                     NewYear.ctx.save();
                     NewYear.ctx.beginPath();
@@ -32,7 +32,7 @@ var NewYear;
                     NewYear.ctx.save();
                     NewYear.ctx.beginPath();
                     NewYear.ctx.translate(this.position.x, this.position.y);
-                    NewYear.ctx.scale(0.09, 0.09);
+                    NewYear.ctx.scale(0.2, 0.2);
                     NewYear.ctx.moveTo(75, 30);
                     NewYear.ctx.lineTo(90, 60);
                     NewYear.ctx.lineTo(125, 75);
@@ -53,7 +53,7 @@ var NewYear;
                     NewYear.ctx.save();
                     NewYear.ctx.beginPath();
                     NewYear.ctx.translate(this.position.x, this.position.y);
-                    NewYear.ctx.scale(0.5, 0.5);
+                    NewYear.ctx.scale(0.3, 0.3);
                     NewYear.ctx.moveTo(75, 50);
                     NewYear.ctx.lineTo(100, 75);
                     NewYear.ctx.lineTo(100, 25);
@@ -66,7 +66,7 @@ var NewYear;
                     NewYear.ctx.save();
                     NewYear.ctx.beginPath();
                     NewYear.ctx.translate(this.position.x, this.position.y);
-                    NewYear.ctx.scale(0.1, 0.1);
+                    NewYear.ctx.scale(0.2, 0.2);
                     NewYear.ctx.moveTo(75, 40);
                     NewYear.ctx.bezierCurveTo(75, 37, 70, 25, 50, 25);
                     NewYear.ctx.bezierCurveTo(20, 25, 20, 62.5, 20, 62.5);
@@ -82,7 +82,7 @@ var NewYear;
             }
         }
     }
-    Particles.gravity = 1;
+    Particles.gravity = 2;
     NewYear.Particles = Particles;
 })(NewYear || (NewYear = {}));
 //# sourceMappingURL=particles.js.map
