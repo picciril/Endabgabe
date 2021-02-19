@@ -14,7 +14,6 @@ namespace NewYear {
   let startButt: HTMLButtonElement;
   let gamePage: HTMLDivElement;
 
-
   export let ctx: CanvasRenderingContext2D;
 
 
@@ -33,6 +32,7 @@ namespace NewYear {
     startTimer = window.setInterval(handleCountdown, 1000);
   }
 
+
   function handleCountdown(): void {
     let countdown: HTMLParagraphElement = <HTMLParagraphElement>document.getElementById("countdown");
 
@@ -47,7 +47,6 @@ namespace NewYear {
     }
 
   }
-
 
   function startFirework(_event: Event): void {
 
@@ -122,8 +121,8 @@ namespace NewYear {
       let radian: number = (Math.PI * 2) / _number;
       let px: number = Math.cos(radian * i) * expandX * Math.random() * 2;
       let py: number = Math.sin(radian * i) * expandY * Math.random() * 2;
-      let velocity: Vector = new Vector(px, py);
-      let particle: MovingObject = new Particles(origin, velocity, _color, pSize, pShape);
+      let speed: Vector = new Vector(px, py);
+      let particle: MovingObject = new Particles(origin, speed, _color, pSize, pShape);
       movingObjects.push(particle);
 
     }

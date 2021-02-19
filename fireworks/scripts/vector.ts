@@ -13,9 +13,9 @@ namespace NewYear {
             this.y = _y;
         }
 
-        public scale(_factor: number): void {
-            this.x *= _factor;
-            this.y *= _factor;
+        public scale(_scaleFactor: number): void {
+            this.x *= _scaleFactor;
+            this.y *= _scaleFactor;
         }
 
         public add(_addend: Vector): void {

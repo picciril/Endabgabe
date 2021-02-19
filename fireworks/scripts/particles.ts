@@ -2,26 +2,24 @@ namespace NewYear {
 
     export class Particles extends MovingObject {
 
-        public position: Vector;
-        public velocity: Vector;
         static gravity: number = 2;
         shape: string;
         size: number;
         color: string;
 
 
-        constructor(_position: Vector, _velocity: Vector, _color: string, _pSize: number, _pShape: string) {
+        constructor(_position: Vector, _speed: Vector, _color: string, _pSize: number, _pShape: string) {
             super(_position);
             this.color = _color;
-            this.velocity = _velocity.copy();
+            this.speed = _speed.copy();
             this.size = _pSize;
             this.shape = _pShape;
         }
 
-        public move(_timeslice: number): void {
-            super.move(_timeslice);
-            this.velocity.y += Particles.gravity;
-            this.size -= _timeslice;
+        public move(_interval: number): void {
+            super.move(_interval);
+            this.speed.y += Particles.gravity;
+            this.size -= _interval;
             if (this.size < 0)
                 this.expendable = true;
         }
