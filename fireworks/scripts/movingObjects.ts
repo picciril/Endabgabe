@@ -2,7 +2,7 @@ namespace NewYear {
     export abstract class MovingObject {
         public position: Vector;
         public speed: Vector;
-        public expendable: boolean = false;
+        public expendable: boolean = false; //muss der Partikel noch gezeichnet werden?
 
 
         constructor(_position?: Vector) {

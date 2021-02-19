@@ -24,14 +24,14 @@ var NewYear;
         startPage.style.display = "grid";
         startButt.style.display = "none";
         gamePage.style.display = "none";
-        startTimer = window.setInterval(handleCountdown, 1000);
+        startTimer = window.setInterval(handleCountdown, 1000); //1000ms
     }
     function handleCountdown() {
         let countdown = document.getElementById("countdown");
         if (timeleft <= 0) {
-            clearInterval(startTimer);
-            countdown.innerText = "Frohes Neues!";
-            startButt.style.display = "initial";
+            clearInterval(startTimer); //leeren
+            countdown.innerText = "Frohes Neues!"; //Frohes Neues erscheint
+            startButt.style.display = "initial"; //Button erscheint
             startButt.addEventListener("click", startFirework);
         }
         else {
@@ -43,16 +43,10 @@ var NewYear;
         //richtige abschnitte sichtbar machen
         startPage.style.display = "none";
         gamePage.style.display = "grid";
-        let canvas = document.querySelector("canvas");
-        if (!canvas)
-            return;
-        NewYear.ctx = canvas.getContext("2d");
-        //let saveButt: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#saveButt");
-        //saveButt.addEventListener("click", sendDataToServer);
-        //let loadButt: HTMLButtonElement = <HTMLButtonElement>document.querySelector("button#loadButt");
-        //loadButt.addEventListener("click", getDataFromServer);
-        canvas.addEventListener("click", handleClick);
-        window.setInterval(update, 20);
+        let canvas = document.getElementById("canvas"); //Variable für Canvas
+        NewYear.ctx = canvas.getContext("2d"); //Canvas Rendering Kontext wird auf dem Canvas element installiert.
+        canvas.addEventListener("click", handleClick); //Click auf Canvas
+        window.setInterval(update, 20); //Alle 0,02s Update
     }
     function update() {
         NewYear.ctx.fillStyle = "rgba(0,0,0,0.3)";
@@ -63,12 +57,12 @@ var NewYear;
         }
         for (let index = movingObjects.length - 1; index >= 0; index--) {
             if (movingObjects[index].expendable)
-                movingObjects.splice(index, 1);
+                movingObjects.splice(index, 1); // aus Array schneiden
         }
     }
     function handleClick(_event) {
         console.log("handle click");
-        let mouseX = _event.offsetX;
+        let mouseX = _event.offsetX; // offset besser wegen Grid (linke obere Ecke)
         let mouseY = _event.offsetY;
         formular = document.querySelector("form#userInterface");
         let formularData = new FormData(formular);
@@ -82,6 +76,7 @@ var NewYear;
         console.log(pShape);
         console.log(mouseX);
         console.log(mouseY);
+        //Werte werden in der Konsole ausgegeben
         createParticle(mouseX, mouseY, pNumber, pColor, pSize, pShape);
     }
     function createParticle(_mouseX, _mouseY, _number, _color, _size, _shape) {
@@ -92,10 +87,10 @@ var NewYear;
         let expandY = Math.floor(Math.random() * (expandMax - expandMin)) + expandMin;
         for (let i = 0; i < _number; i++) {
             let radian = (Math.PI * 2) / _number;
-            let px = Math.cos(radian * i) * expandX * Math.random() * 2;
-            let py = Math.sin(radian * i) * expandY * Math.random() * 2;
-            let velocity = new NewYear.Vector(px, py);
-            let particle = new NewYear.Particles(origin, velocity, _color, pSize, pShape);
+            let px = Math.cos(radian * i) * expandX * Math.random() * 2; //Random Breite
+            let py = Math.sin(radian * i) * expandY * Math.random() * 2; //Random höhe
+            let speed = new NewYear.Vector(px, py);
+            let particle = new NewYear.Particles(origin, speed, _color, pSize, pShape);
             movingObjects.push(particle);
         }
     }

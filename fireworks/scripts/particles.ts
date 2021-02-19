@@ -21,7 +21,7 @@ namespace NewYear {
             this.speed.y += Particles.gravity;
             this.size -= _interval;
             if (this.size < 0)
-                this.expendable = true;
+                this.expendable = true;  //muss der Partikel noch gezeichnet werden?
         }
 
         public draw(): void {

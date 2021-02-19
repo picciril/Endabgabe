@@ -9,9 +9,9 @@ var NewYear;
             this.x = _x;
             this.y = _y;
         }
-        scale(_factor) {
-            this.x *= _factor;
-            this.y *= _factor;
+        scale(_scaleFactor) {
+            this.x *= _scaleFactor;
+            this.y *= _scaleFactor;
         }
         add(_addend) {
             this.x += _addend.x;
@@ -22,5 +22,7 @@ var NewYear;
         }
     }
     NewYear.Vector = Vector;
+    //pure Rechnung
+    //inspieriert von Sarah Franke
 })(NewYear || (NewYear = {}));
 //# sourceMappingURL=vector.js.map
